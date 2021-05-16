@@ -78,15 +78,19 @@ public class Animal {
     public void setType(String specific_type) {
         this.specific_type = specific_type;
     }
+
     @Override
     public String toString() {
-      String summary= "AnimalID: "+this.getAnimalID()+" - "+this.getName()+" is "+this.getAge()+" years old, "+this.getGender();
-      if (this.getHealth()==false) {summary=summary + " and sick";}
-     if (this.getfeeding()==false) {summary = summary + " and needs to be fed";}
-      summary=summary+". "+this.getName()+" is a "+this.getType()+".";
-      
-      
-               return summary;
-   }
+        String summary = "AnimalID: " + this.getAnimalID() + " - " + this.getName() + " is " + this.getAge() + " years old, " + this.getGender();
+        if (this.getHealth() == false) {
+            summary = summary + " and sick";
+        }
+        if (this.getfeeding() == false) {
+            summary = summary + " and needs to be fed";
+        }
+        summary = summary + ". " + this.getName() + " is a " + this.getType() + ".";
+
+        return summary;
+    }
 
 }

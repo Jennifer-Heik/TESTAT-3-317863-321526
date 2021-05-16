@@ -16,8 +16,7 @@ public class AnimalManager {
 
     Scanner keyboard = new Scanner(System.in);
     ArrayList animalList = new ArrayList();
-    
-    
+
     public void handleAnimals() {
 
         Scanner keyboard = new Scanner(System.in);
@@ -74,7 +73,7 @@ public class AnimalManager {
         boolean health_status = true;
         boolean feeding_status = true;
         int value;
-        int gender_value = 1;
+        int gender_value;
 
         System.out.println("Please enter the animal name(i.e. Tim): ");//name
         name = keyboard.nextLine();
@@ -150,7 +149,7 @@ public class AnimalManager {
                 health_status = false;
             }
 
-            myAnimal.setAnimalID(animalList.size() + 1);
+            myAnimal.setAnimalID(animalList.size());
             myAnimal.setName(name);
             myAnimal.setAge(age);
             myAnimal.setFeeding(feeding_status);
@@ -167,38 +166,38 @@ public class AnimalManager {
     }
 
     public void updateAnimal() {
-        int id=0; 
+        int id = 0;
         String input, gender_input, age_input;
-        String specific_type="";
+        String specific_type;
         boolean name_Status, type_Status;
-        String name="";
+        String name = "";
         int value, gender_value;
-        int age=0;
-        int gender=0;
+        int age = 0;
+        int gender = 0;
         boolean updateMenu = true;
-        boolean health_status=false;
-        boolean feeding_status=false;
-        
+        boolean health_status = false;
+        boolean feeding_status = false;
+
         System.out.println("Enter the AnimalId of the animal that you want to update: ");
-        String animalID_input= keyboard.nextLine();
+        String animalID_input = keyboard.nextLine();
         id = checkInputs(animalID_input, id);
-        
-        while (id> animalList.size()){
+
+        while (id > animalList.size()) {
             System.out.println("Invalid input: AnimalID does not exist. Please reenter. If you want to return to the animal menu, press ENTER. ");
-            animalID_input=keyboard.nextLine();
-            if (animalID_input.equals("")){
+            animalID_input = keyboard.nextLine();
+            if (animalID_input.equals("")) {
                 return;
-            }
-            else {
-            id = checkInputs(animalID_input, id);
+            } else {
+                id = checkInputs(animalID_input, id);
             }
         }
-        Animal myAnimal = (Animal) animalList.get(id);
         
-       while (updateMenu){
-       System.out.println("TIERPARK PF-Management (Version 1.0 (C) 2021 by Group Judith & Jennifer ☺\n"
+        Animal myAnimal = (Animal) animalList.get(id);
+
+        while (updateMenu) {
+            System.out.println("TIERPARK PF-Management (Version 1.0 (C) 2021 by Group Judith & Jennifer ☺\n"
                     + "UPDATE MENU\n "
-                    + "Which attributes of "+ myAnimal.getType() +" "+ myAnimal.getName()+" do you want to update?\n"
+                    + "Which attributes of " + myAnimal.getType() + " " + myAnimal.getName() + " do you want to update?\n"
                     + "Please select:\n"
                     + "Update name 1\n"
                     + "Update gender 2\n"
@@ -222,101 +221,94 @@ public class AnimalManager {
             if (value == 1) {
                 System.out.println("Enter the new animal name: ");
                 name = keyboard.nextLine();
-        name_Status = containsOnlyLetters(name);
-        while (name_Status == false) {
-            System.out.println("Invalid Input. Name contains numbers. Please try again: ");
-            name = keyboard.nextLine();
-            name_Status = containsOnlyLetters(name);
-        }
-myAnimal.setName(name);
+                name_Status = containsOnlyLetters(name);
+                while (name_Status == false) {
+                    System.out.println("Invalid Input. Name contains numbers. Please try again: ");
+                    name = keyboard.nextLine();
+                    name_Status = containsOnlyLetters(name);
+                }
+                myAnimal.setName(name);
             }
             if (value == 2) {
                 System.out.println("Enter the corrected animal gender. 1(male) or 2(female): ");
-gender_input = keyboard.nextLine();
-        gender = checkInputs(gender_input, gender);
-        gender_value = 1;
-        while (gender_value == 1) {
-            if (gender == 1) {
-                gender_value = 2;
-                break;
-            }
-            if (gender == 2) {
-                gender_value = 2;
-                break;
-            } else {
-                System.out.println("Invalid input. Please try again: ");
                 gender_input = keyboard.nextLine();
                 gender = checkInputs(gender_input, gender);
-            }
-        }
-        if (gender == 1) {
-                myAnimal.setGender("male");
-            } else if (gender == 2) {
-                myAnimal.setGender("female");
-            }
+                gender_value = 1;
+                while (gender_value == 1) {
+                    if (gender == 1) {
+                        gender_value = 2;
+                        break;
+                    }
+                    if (gender == 2) {
+                        gender_value = 2;
+                        break;
+                    } else {
+                        System.out.println("Invalid input. Please try again: ");
+                        gender_input = keyboard.nextLine();
+                        gender = checkInputs(gender_input, gender);
+                    }
+                }
+                if (gender == 1) {
+                    myAnimal.setGender("male");
+                } else if (gender == 2) {
+                    myAnimal.setGender("female");
+                }
             }
             if (value == 3) {
                 System.out.println("Enter the corrected animal type: ");
                 specific_type = keyboard.nextLine();
-        type_Status = containsOnlyLetters(name);
-        while (type_Status == false) {
-            System.out.println("Invalid Input. Type contains numbers. Please try again: ");
-            name = keyboard.nextLine();
-            type_Status = containsOnlyLetters(name);
-        }
-        myAnimal.setType(specific_type);
+                type_Status = containsOnlyLetters(name);
+                while (type_Status == false) {
+                    System.out.println("Invalid Input. Type contains numbers. Please try again: ");
+                    name = keyboard.nextLine();
+                    type_Status = containsOnlyLetters(name);
+                }
+                myAnimal.setType(specific_type);
             }
             if (value == 4) {
                 System.out.println("Please enter the corrected age of the animal: ");
                 age_input = keyboard.nextLine();
-        age = checkInputs(age_input, age);
-        myAnimal.setAge(age);
+                age = checkInputs(age_input, age);
+                myAnimal.setAge(age);
             }
             if (value == 5) {
-                health_status=true;
+                health_status = true;
                 myAnimal.setHealth(health_status);
             }
             if (value == 6) {
-                feeding_status=true;
+                feeding_status = true;
                 myAnimal.setFeeding(feeding_status);
             }
             updateMenu = false;
-        } 
+        }
     }
 
     public void deleteAnimal() {
-        int id=0; 
-        String input, gender_input, age_input;
-        String specific_type="";
-        boolean name_Status, type_Status;
-        String name="";
-        int value, gender_value;
-        int age=0;
-        int gender=0;
+        int id = 0;
+        String input;
+        int value;
         boolean deletionMenu = true;
-        boolean health_status=false;
-        boolean feeding_status=false;
-        
+
         System.out.println("Enter the AnimalId of the animal that you want to delete: ");
-        String animalID_input= keyboard.nextLine();
+        String animalID_input = keyboard.nextLine();
         id = checkInputs(animalID_input, id);
-        
-        while (id> animalList.size()){
+
+        while (id > animalList.size()) {
             System.out.println("Invalid input: AnimalID does not exist. Please reenter. If you want to return to the animal menu, press ENTER. ");
-            animalID_input=keyboard.nextLine();
-            if (animalID_input.equals("")){
+            animalID_input = keyboard.nextLine();
+            if (animalID_input.equals("")) {
                 return;
-            }
-            else {
-            id = checkInputs(animalID_input, id);
+            } else {
+                id = checkInputs(animalID_input, id);
             }
         }
-        Animal myAnimal = (Animal) animalList.get(id);
         
-       while (deletionMenu){
-       System.out.println("TIERPARK PF-Management (Version 1.0 (C) 2021 by Group Judith & Jennifer ☺\n"
+        Animal myAnimal = (Animal) animalList.get(id);
+
+        while (deletionMenu) {
+            System.out.println("TIERPARK PF-Management (Version 1.0 (C) 2021 by Group Judith & Jennifer ☺\n"
                     + "DELETION MENU\n "
-                    + "Do you want to delete "+ myAnimal.getType() +" "+ myAnimal.getName()+" ?\n"
+                    + "Do you want to delete " + myAnimal.getType() + " " + myAnimal.getName() + " ?\n"
                     + "Please select:\n"
                     + "Delete animal 1\n"
                     + "Return to animal menu 0\n"
@@ -337,11 +329,11 @@ gender_input = keyboard.nextLine();
                 for (int i = 0; i < animalList.size(); i++) {
                     myAnimal = (Animal) animalList.get(i);
                     myAnimal.setAnimalID(i);
-                    }
+                }
             }
-            
+
             deletionMenu = false;
-        } 
+        }
     }
 
     public void showAnimalList() {
@@ -397,6 +389,7 @@ gender_input = keyboard.nextLine();
                 }
 
             }
+            filtermenu = false;
         }
     }
 

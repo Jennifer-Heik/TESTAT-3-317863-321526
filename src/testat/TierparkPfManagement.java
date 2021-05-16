@@ -4,13 +4,8 @@
  * and open the template in the editor.
  */
 package testat;
-import java.awt.BorderLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+
 import java.util.Scanner;
-import javax.swing.*;
 
 /**
  *
@@ -31,6 +26,7 @@ public class TierparkPfManagement {
 
     public static void main(String[] args) {
         AnimalManager myAnimalManager = new AnimalManager();
+        FoodManager myFoodManager = new FoodManager();
         Scanner keyboard = new Scanner(System.in);
         String input;
         boolean mainmenu = true;
@@ -61,13 +57,12 @@ public class TierparkPfManagement {
                 myAnimalManager.handleAnimals();
             }
             if (value == 2) {
-                System.out.println("food: to be implemented");
+                myFoodManager.handleFood();
 
             }
             if (value == 3) {
                 notexistent();
             }
-            
 
         }
         System.exit(0);
@@ -75,8 +70,3 @@ public class TierparkPfManagement {
     }//end of main method
 
 }
-    
-    
-    
-    
-
